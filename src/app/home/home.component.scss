@@ -1,0 +1,17 @@
+.scale{
+ transform: scale(1);
+ transition-duration: 200ms;
+ transition-property: all;
+}
+
+.scale:hover{
+ transform: scale(1.15);
+}
+
+.display{
+    position: absolute;
+    top:0;
+    left:0px;
+    height: 100vh;background-color: white;
+    width: 100vw;
+}

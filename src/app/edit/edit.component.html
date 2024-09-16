@@ -1,0 +1,65 @@
+<span class="quit container" (click)="handleClose()">X</span>
+<form class="d-flex vh-100 justify-content-center align-items-center " [formGroup]="formGroup"
+    (ngSubmit)="handleSubmit()">
+    <div class=" d-flex flex-column justify-content-center align-items-center">
+        <div class="container d-flex mt-3 justify-content-between">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <label for="name" class="form-label">Name: </label>
+                            <input type="text" name="name" formControlName="name" class="form-control" />
+
+                            <br>
+                            <small style="color: red;" class="text-start container"
+                                *ngIf="(formGroup.get('name').errors?.['required']) && (formGroup.get('name').touched)">Name
+                                is
+                                required</small>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="role" class="form-label">Role:</label>
+                            <input type="text" class="form-control" name="role" formControlName="role" />
+                            <small style="color: red;" class="text-start container"
+                                *ngIf="(formGroup.get('role').errors?.['required']) && (formGroup.get('role').touched)">Role
+                                is
+                                required</small>
+                        </div>
+
+                        <div class="col-12 mt-3" formGroupName="skills">
+                            <label for="skills" class="form-label">Skills:</label>
+                            <div class="row" *ngFor="let skill of formGroup.get('skills')?.['controls']; let i = index">
+                                <input name="skills" type="text" class=" col form-control my-3" placeholder="add skills"
+                                    [formControlName]="i" />
+                                <button type="button" class="col-3 mx-2 btn btn-danger my-3"
+                                    (click)="handleDeleteSkill(i)">delete
+                                    skill</button>
+                            </div>
+
+                            <button type="button" class="btn btn-success my-3" (click)="handleAddSkill()">add
+                                skill</button>
+
+                            <small style="color: red;" class="text-start container"
+                                *ngIf="((formGroup.get('skills').invalid) && formGroup.get('skills').touched)">Skills
+                                should be in a new tab</small>
+                        </div>
+
+                    </div>
+
+                    <div class="row justify-content-start">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary" [disabled]="!formGroup.valid">Save</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-danger" type="button" (click)="handleDeleteEmployee()">delete employee</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</form>
